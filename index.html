@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
     </script>
     <style>
+        /* ===== RESET & STYLE (sama seperti sebelumnya) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -516,7 +517,7 @@
         <h2>🌿 Upah Cengkeh</h2>
         <div class="subtitle">Petik: Rp 7.000/kg | Kepik: Rp 1.500/kg</div>
 
-        <!-- ===== TAB (pakai ID + event listener, BUKAN onclick) ===== -->
+        <!-- ===== TAB ===== -->
         <div class="tab-wrap">
             <button class="tab-btn active-petik" id="tabPetik">
                 🌱 Petik <span class="badge-tab">Rp 7.000</span>
@@ -755,13 +756,13 @@
                 const tipeLabel = item.tipe === 'Petik' ? '🌱' : '🐛';
                 const warnaTipe = item.tipe === 'Petik' ? '#2d5a27' : '#1b6b8a';
                 html += `
-                        <tr>
-                            <td style="text-align:left;padding-left:16px;">${index + 1}. ${item.nama}</td>
-                            <td>${item.berat.toFixed(2)}</td>
-                            <td>Rp ${item.upah.toLocaleString('id-ID')}</td>
-                            <td style="font-size:11px;font-weight:600;color:${warnaTipe};">${tipeLabel} ${item.tipe}</td>
-                        </tr>
-                    `;
+                            <tr>
+                                <td style="text-align:left;padding-left:16px;">${index + 1}. ${item.nama}</td>
+                                <td>${item.berat.toFixed(2)}</td>
+                                <td>Rp ${item.upah.toLocaleString('id-ID')}</td>
+                                <td style="font-size:11px;font-weight:600;color:${warnaTipe};">${tipeLabel} ${item.tipe}</td>
+                            </tr>
+                        `;
             });
             tbody.innerHTML = html;
 
@@ -773,26 +774,26 @@
             const totalUpahKepik = kepikData.reduce((s, d) => s + d.upah, 0);
 
             tfoot.innerHTML = `
-                    <tr class="total-row">
-                        <td style="text-align:right;padding-right:16px;font-weight:700;">TOTAL</td>
-                        <td style="font-weight:800;">${totalBerat.toFixed(2)} kg</td>
-                        <td style="font-weight:800;">Rp ${totalUpah.toLocaleString('id-ID')}</td>
-                        <td style="font-size:10px;font-weight:600;">
-                            🌱 ${totalPetik.toFixed(2)} kg | 🐛 ${totalKepik.toFixed(2)} kg
-                        </td>
-                    </tr>
-                    <tr class="total-row" style="border-top:none;">
-                        <td colspan="2" style="text-align:right;padding-right:16px;font-weight:700;border-top:none;font-size:12px;">
-                            Detail
-                        </td>
-                        <td style="border-top:none;font-size:12px;font-weight:600;">
-                            Petik: Rp ${totalUpahPetik.toLocaleString('id-ID')}
-                        </td>
-                        <td style="border-top:none;font-size:12px;font-weight:600;">
-                            Kepik: Rp ${totalUpahKepik.toLocaleString('id-ID')}
-                        </td>
-                    </tr>
-                `;
+                        <tr class="total-row">
+                            <td style="text-align:right;padding-right:16px;font-weight:700;">TOTAL</td>
+                            <td style="font-weight:800;">${totalBerat.toFixed(2)} kg</td>
+                            <td style="font-weight:800;">Rp ${totalUpah.toLocaleString('id-ID')}</td>
+                            <td style="font-size:10px;font-weight:600;">
+                                🌱 ${totalPetik.toFixed(2)} kg | 🐛 ${totalKepik.toFixed(2)} kg
+                            </td>
+                        </tr>
+                        <tr class="total-row" style="border-top:none;">
+                            <td colspan="2" style="text-align:right;padding-right:16px;font-weight:700;border-top:none;font-size:12px;">
+                                Detail
+                            </td>
+                            <td style="border-top:none;font-size:12px;font-weight:600;">
+                                Petik: Rp ${totalUpahPetik.toLocaleString('id-ID')}
+                            </td>
+                            <td style="border-top:none;font-size:12px;font-weight:600;">
+                                Kepik: Rp ${totalUpahKepik.toLocaleString('id-ID')}
+                            </td>
+                        </tr>
+                    `;
         }
 
         function updateInfoBar() {
@@ -801,34 +802,33 @@
         }
 
         // ================================================================
-        // 4.  TAB (fungsi global agar bisa dipanggil dari inline)
+        // 4.  TAB - FUNGSI GLOBAL
         // ================================================================
         function switchTab(tab) {
-            console.log('🔄 switchTab dipanggil:', tab);
+            console.log('🔄 switchTab dipanggil dengan tab:', tab);
             currentTab = tab;
             const tabPetik = document.getElementById('tabPetik');
             const tabKepik = document.getElementById('tabKepik');
             const info = document.getElementById('infoUpah');
 
+            // Reset class
+            tabPetik.className = 'tab-btn';
+            tabKepik.className = 'tab-btn';
+
             if (tab === 'petik') {
-                tabPetik.className = 'tab-btn active-petik';
-                tabKepik.className = 'tab-btn';
+                tabPetik.classList.add('active-petik');
                 info.className = 'info-upah petik';
                 info.textContent = '💰 Upah Petik: Rp 7.000 / kg';
-                console.log('🌱 Tab: PETIK');
+                console.log('🌱 Tab aktif: PETIK');
             } else {
-                tabPetik.className = 'tab-btn';
-                tabKepik.className = 'tab-btn active-kepik';
+                tabKepik.classList.add('active-kepik');
                 info.className = 'info-upah kepik';
                 info.textContent = '💰 Upah Kepik: Rp 1.500 / kg';
-                console.log('🐛 Tab: KEPIK');
+                console.log('🐛 Tab aktif: KEPIK');
             }
             document.getElementById('namaPekerja').focus();
             showIndicatorTemp('📋 Tab: ' + tab.toUpperCase(), 'success', 1000);
         }
-
-        // Ekspor ke global agar bisa dipanggil dari inline onclick (jika masih ada)
-        window.switchTab = switchTab;
 
         // ================================================================
         // 5.  DOWNLOAD
@@ -943,12 +943,12 @@
         }
 
         // ================================================================
-        // 7.  EVENT LISTENER (Dipasang setelah DOM siap)
+        // 7.  EVENT LISTENER (Dipasang saat DOM siap)
         // ================================================================
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 DOM siap, pasang event listener...');
+            console.log('🚀 DOM siap, pasang semua event listener...');
 
-            // Tab dengan event listener (bukan inline onclick)
+            // TAB
             document.getElementById('tabPetik').addEventListener('click', function() {
                 switchTab('petik');
             });
@@ -956,13 +956,13 @@
                 switchTab('kepik');
             });
 
-            // Tombol
+            // TOMBOL
             document.getElementById('btnTambahSave').addEventListener('click', tambahDanSave);
             document.getElementById('btnHapus').addEventListener('click', hapusSemua);
             document.getElementById('btnDownloadTxt').addEventListener('click', downloadTXT);
             document.getElementById('btnDownloadPng').addEventListener('click', downloadPNG);
 
-            // Enter key
+            // ENTER KEY
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     const aktif = document.activeElement;
@@ -973,21 +973,24 @@
                 }
             });
 
-            // Load data
+            // LOAD DATA
             loadData();
 
-            console.log('✅ Aplikasi siap!');
+            console.log('✅ Semua event listener terpasang!');
             console.log('📋 Harga:', HARGA);
             console.log('📌 Tab awal:', currentTab);
             console.log('🔌 Supabase status:', useSupabase ? 'ONLINE' : 'OFFLINE (fallback localStorage)');
         });
 
-        // Ekspor fungsi ke global agar bisa dipanggil dari inline (jika diperlukan)
+        // ================================================================
+        // 8.  EXPOSE KE GLOBAL (untuk keperluan debugging)
+        // ================================================================
+        window.switchTab = switchTab;
         window.tambahDanSave = tambahDanSave;
         window.hapusSemua = hapusSemua;
         window.downloadTXT = downloadTXT;
         window.downloadPNG = downloadPNG;
-        window.switchTab = switchTab;
+        window.loadData = loadData;
     </script>
 
 </body>
