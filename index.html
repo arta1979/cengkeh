@@ -6,7 +6,10 @@
   <meta name="theme-color" content="#2d5a27">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="launchericon-192x192.png">
   <title>🌿 Upah Cengkeh 3D</title>
+
   <style>
     /* ===== RESET + PERSPEKTIF ===== */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -367,7 +370,7 @@
 
 <div class="indicator" id="indicator">✅ Tersimpan</div>
 
-<!-- html2canvas opsional untuk PNG -->
+<!-- html2canvas untuk PNG -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
@@ -649,29 +652,10 @@
   window.downloadPNG = downloadPNG;
 
   // ================================================================
-  // 11. PWA - SERVICE WORKER (inline via Blob)
+  // 11. SERVICE WORKER (pakai file sw.js yang sudah ada)
   // ================================================================
   if ('serviceWorker' in navigator) {
-    const swCode = `
-      const CACHE = 'upah-cengkeh-v1';
-      self.addEventListener('install', e => {
-        e.waitUntil(
-          caches.open(CACHE).then(c => c.addAll(['/'])).then(() => self.skipWaiting())
-        );
-      });
-      self.addEventListener('activate', e => {
-        e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))));
-        self.clients.claim();
-      });
-      self.addEventListener('fetch', e => {
-        e.respondWith(
-          caches.match(e.request).then(r => r || fetch(e.request)).catch(() => caches.match('/'))
-        );
-      });
-    `;
-    const blob = new Blob([swCode], { type: 'application/javascript' });
-    const swUrl = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(swUrl)
+    navigator.serviceWorker.register('sw.js')
       .then(() => console.log('✅ Service Worker terdaftar'))
       .catch(err => console.warn('⚠️ SW gagal:', err));
   }
