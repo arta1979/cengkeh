@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Upah Petik & Kepik Cengkeh</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        html, body {
+        html,
+        body {
             width: 100%;
             min-height: 100vh;
             min-height: 100dvh;
@@ -20,7 +24,6 @@
             overflow-x: hidden;
             touch-action: manipulation;
         }
-
         body {
             display: flex;
             justify-content: center;
@@ -30,11 +33,11 @@
 
         .container {
             width: 100%;
-            max-width: 620px;
+            max-width: 660px;
             background: white;
             border-radius: 20px;
             padding: 20px 18px 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             min-height: 95vh;
             min-height: 95dvh;
         }
@@ -49,14 +52,12 @@
             gap: 10px;
             margin-bottom: 4px;
         }
-
         .subtitle {
             font-size: clamp(13px, 2.5vw, 16px);
             color: #666;
             margin-bottom: 15px;
         }
 
-        /* ===== TAB ===== */
         .tab-wrap {
             display: flex;
             gap: 8px;
@@ -65,7 +66,6 @@
             border-radius: 50px;
             padding: 5px;
         }
-
         .tab-btn {
             flex: 1;
             padding: 12px 16px;
@@ -78,38 +78,32 @@
             color: #666;
             background: transparent;
         }
-
         .tab-btn.active-petik {
             background: linear-gradient(135deg, #2d5a27, #4a8c3f);
             color: white;
             box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
         }
-
         .tab-btn.active-kepik {
             background: linear-gradient(135deg, #1b6b8a, #2a9bc8);
             color: white;
             box-shadow: 0 4px 15px rgba(27, 107, 138, 0.3);
         }
-
         .tab-btn:hover:not(.active-petik):not(.active-kepik) {
-            background: rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.05);
         }
-
         .tab-btn .badge-tab {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 0 10px;
             border-radius: 50px;
             font-size: 11px;
             margin-left: 4px;
         }
-
         .tab-btn.active-petik .badge-tab,
         .tab-btn.active-kepik .badge-tab {
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.25);
         }
 
-        /* Info upah per tab */
         .info-upah {
             text-align: center;
             font-size: clamp(13px, 2vw, 16px);
@@ -118,13 +112,12 @@
             border-radius: 12px;
             margin-bottom: 12px;
             background: #f8f5f0;
+            transition: all 0.3s;
         }
-
         .info-upah.petik {
             color: #2d5a27;
             border-left: 4px solid #2d5a27;
         }
-
         .info-upah.kepik {
             color: #1b6b8a;
             border-left: 4px solid #1b6b8a;
@@ -141,19 +134,20 @@
             border-left: 4px solid #2d5a27;
             transition: all 0.3s;
         }
-
         .status-bar.show {
             display: flex;
         }
-
         .status-bar.warning {
             background: #fff3cd;
             border-left-color: #ff9800;
         }
-
         .status-bar.success {
             background: #d4edda;
             border-left-color: #28a745;
+        }
+        .status-bar.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
         }
 
         .indicator {
@@ -166,27 +160,23 @@
             border-radius: 50px;
             font-size: 12px;
             font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 999;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.3s ease;
             pointer-events: none;
         }
-
         .indicator.show {
             opacity: 1;
             transform: translateY(0);
         }
-
         .indicator.success {
             background: linear-gradient(135deg, #28a745, #34ce57);
         }
-
         .indicator.warning {
             background: linear-gradient(135deg, #ff9800, #ffc107);
         }
-
         .indicator.error {
             background: linear-gradient(135deg, #dc3545, #e74c6f);
         }
@@ -199,7 +189,6 @@
             margin-bottom: 4px;
             color: #333;
         }
-
         input {
             width: 100%;
             padding: 14px 16px;
@@ -211,7 +200,6 @@
             background: #fafafa;
             -webkit-appearance: none;
         }
-
         input:focus {
             border-color: #4a8c3f;
             background: white;
@@ -224,8 +212,6 @@
             margin: 12px 0 16px;
             flex-wrap: wrap;
         }
-
-        /* ===== TOMBOL KAPSUL GRADIEN ===== */
         button {
             padding: 14px 24px;
             font-size: clamp(16px, 3vw, 20px);
@@ -238,11 +224,10 @@
             min-width: 100px;
             touch-action: manipulation;
             color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             letter-spacing: 0.5px;
         }
-
         button:active {
             transform: scale(0.95);
         }
@@ -256,13 +241,22 @@
             box-shadow: 0 6px 20px rgba(45, 90, 39, 0.4);
         }
 
-        .btn-download {
+        .btn-download-txt {
             background: linear-gradient(135deg, #1b6b8a, #2a9bc8);
         }
-        .btn-download:hover {
+        .btn-download-txt:hover {
             background: linear-gradient(135deg, #0f4a62, #1f8ab5);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(27, 107, 138, 0.4);
+        }
+
+        .btn-download-png {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+        }
+        .btn-download-png:hover {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
         }
 
         .btn-hapus {
@@ -278,20 +272,24 @@
             background: linear-gradient(135deg, #f39c12, #f1c40f);
             animation: pulse 0.6s infinite alternate;
         }
-
         @keyframes pulse {
-            from { opacity: 0.7; transform: scale(0.96); }
-            to { opacity: 1; transform: scale(1.02); }
+            from {
+                opacity: 0.7;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1.02);
+            }
         }
 
-        /* ===== TABEL STYLE XLSX ===== */
         .table-wrap {
             overflow-x: auto;
             margin: 10px 0 12px;
             border-radius: 8px;
             border: 1px solid #d0d0d0;
             background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         table {
@@ -313,11 +311,9 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-
         thead th:last-child {
             border-right: none;
         }
-
         thead th:first-child {
             text-align: left;
         }
@@ -329,21 +325,17 @@
             text-align: center;
             color: #333;
         }
-
         tbody td:last-child {
             border-right: none;
         }
-
         tbody td:first-child {
             text-align: left;
             font-weight: 500;
         }
-
         tbody td:nth-child(2) {
             font-weight: 600;
             color: #1e3d1a;
         }
-
         tbody td:last-child {
             font-weight: 700;
             color: #1e3d1a;
@@ -352,16 +344,13 @@
         tbody tr:nth-child(even) {
             background: #f8f9fc;
         }
-
         tbody tr:hover {
             background: #e8f0fe;
         }
-
         tbody tr:last-child td {
             border-bottom: none;
         }
 
-        /* ===== TOTAL ROW ===== */
         .total-row td {
             background: linear-gradient(180deg, #e8f5e9, #c8e6c9);
             font-weight: 800;
@@ -373,22 +362,18 @@
             text-align: center;
             border-right: 1px solid #a5d6a7;
         }
-
         .total-row td:last-child {
             border-right: none;
         }
-
         .total-row td:first-child {
             text-align: right;
             font-size: clamp(14px, 2.2vw, 17px);
         }
-
         .total-row td:nth-child(2) {
             font-size: clamp(17px, 3vw, 22px);
             color: #1e3d1a;
             font-weight: 800;
         }
-
         .total-row td:last-child {
             font-size: clamp(17px, 3vw, 22px);
             color: #1e3d1a;
@@ -413,7 +398,6 @@
             gap: 4px;
             margin-top: 8px;
         }
-
         .badge {
             background: linear-gradient(135deg, #2d5a27, #4a8c3f);
             color: white;
@@ -424,401 +408,587 @@
         }
 
         @media (max-width: 400px) {
-            .container { padding: 12px 10px 20px; }
-            .btn-group { gap: 6px; }
-            button { padding: 12px 14px; font-size: 14px; min-width: 70px; }
-            thead th, tbody td { padding: 7px 6px; font-size: 11px; }
-            input { padding: 12px 14px; font-size: 16px; }
-            .indicator { font-size: 10px; padding: 4px 12px; bottom: 12px; right: 12px; }
-            .tab-btn { padding: 10px 12px; font-size: 13px; }
-            .tab-wrap { gap: 4px; padding: 4px; }
+            .container {
+                padding: 12px 10px 20px;
+            }
+            .btn-group {
+                gap: 6px;
+            }
+            button {
+                padding: 12px 14px;
+                font-size: 14px;
+                min-width: 70px;
+            }
+            thead th,
+            tbody td {
+                padding: 7px 6px;
+                font-size: 11px;
+            }
+            input {
+                padding: 12px 14px;
+                font-size: 16px;
+            }
+            .indicator {
+                font-size: 10px;
+                padding: 4px 12px;
+                bottom: 12px;
+                right: 12px;
+            }
+            .tab-btn {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            .tab-wrap {
+                gap: 4px;
+                padding: 4px;
+            }
         }
 
         @media (min-width: 768px) {
-            .container { padding: 30px 35px 40px; }
-            button { padding: 16px 32px; }
+            .container {
+                padding: 30px 35px 40px;
+            }
+            button {
+                padding: 16px 32px;
+            }
         }
 
         @media (max-height: 500px) and (orientation: landscape) {
-            .container { padding: 10px 15px; min-height: auto; }
-            h2 { font-size: 18px; margin-bottom: 2px; }
-            input { padding: 8px 12px; font-size: 14px; }
-            button { padding: 8px 14px; font-size: 13px; min-width: 60px; }
-            thead th, tbody td { padding: 4px 6px; font-size: 10px; }
-            .btn-group { margin: 6px 0 8px; }
-            .indicator { font-size: 9px; padding: 3px 10px; bottom: 8px; right: 8px; }
-            label { margin-top: 4px; font-size: 12px; }
-            .total-row td { padding: 6px 8px; font-size: 13px; }
-            .tab-btn { padding: 6px 10px; font-size: 11px; }
-            .tab-wrap { margin-bottom: 8px; padding: 3px; }
-            .info-upah { padding: 4px 10px; font-size: 11px; margin-bottom: 6px; }
+            .container {
+                padding: 10px 15px;
+                min-height: auto;
+            }
+            h2 {
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+            input {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            button {
+                padding: 8px 14px;
+                font-size: 13px;
+                min-width: 60px;
+            }
+            thead th,
+            tbody td {
+                padding: 4px 6px;
+                font-size: 10px;
+            }
+            .btn-group {
+                margin: 6px 0 8px;
+            }
+            .indicator {
+                font-size: 9px;
+                padding: 3px 10px;
+                bottom: 8px;
+                right: 8px;
+            }
+            label {
+                margin-top: 4px;
+                font-size: 12px;
+            }
+            .total-row td {
+                padding: 6px 8px;
+                font-size: 13px;
+            }
+            .tab-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            .tab-wrap {
+                margin-bottom: 8px;
+                padding: 3px;
+            }
+            .info-upah {
+                padding: 4px 10px;
+                font-size: 11px;
+                margin-bottom: 6px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container" id="app">
+    <div class="container" id="app">
 
-    <h2>🌿 Upah Cengkeh</h2>
-    <div class="subtitle">Petik: Rp 7.000/kg | Kepik: Rp 1.500/kg</div>
+        <h2>🌿 Upah Cengkeh</h2>
+        <div class="subtitle">Petik: Rp 7.000/kg | Kepik: Rp 1.500/kg</div>
 
-    <!-- ===== TAB ===== -->
-    <div class="tab-wrap">
-        <button class="tab-btn active-petik" id="tabPetik" onclick="switchTab('petik')">
-            🌱 Petik <span class="badge-tab">Rp 7.000</span>
-        </button>
-        <button class="tab-btn" id="tabKepik" onclick="switchTab('kepik')">
-            🐛 Kepik <span class="badge-tab">Rp 1.500</span>
-        </button>
+        <!-- ===== TAB (pakai ID + event listener, BUKAN onclick) ===== -->
+        <div class="tab-wrap">
+            <button class="tab-btn active-petik" id="tabPetik">
+                🌱 Petik <span class="badge-tab">Rp 7.000</span>
+            </button>
+            <button class="tab-btn" id="tabKepik">
+                🐛 Kepik <span class="badge-tab">Rp 1.500</span>
+            </button>
+        </div>
+
+        <div class="info-upah petik" id="infoUpah">💰 Upah Petik: Rp 7.000 / kg</div>
+
+        <div class="status-bar" id="statusBar"></div>
+
+        <label for="namaPekerja">👤 Nama Pekerja</label>
+        <input type="text" id="namaPekerja" placeholder="Misal: Pak Rahmat" autocomplete="off" inputmode="text">
+
+        <label for="berat">⚖️ Berat (kg)</label>
+        <input type="number" id="berat" placeholder="Contoh: 11.5" step="any" autocomplete="off" inputmode="decimal">
+
+        <div class="btn-group">
+            <button class="btn-tambah-save" id="btnTambahSave">➕ Tambah + Save</button>
+            <button class="btn-hapus" id="btnHapus">🗑 Hapus</button>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align:left;padding-left:16px;">👤 Nama</th>
+                        <th>⚖️ Berat (kg)</th>
+                        <th>💰 Upah (Rp)</th>
+                        <th style="font-size:10px;text-transform:none;">📋 Tipe</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelBody">
+                    <tr><td colspan="4" class="kosong">Memuat data...</td></tr>
+                </tbody>
+                <tfoot id="tabelFooter"></tfoot>
+            </table>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-download-txt" id="btnDownloadTxt">⬇ Download .txt</button>
+            <button class="btn-download-png" id="btnDownloadPng">⬇ Download PNG</button>
+        </div>
+
+        <div class="info-bar">
+            <span>💾 <span id="jumlahData">0</span> data tersimpan</span>
+            <span class="badge" id="totalItem">0 item</span>
+        </div>
     </div>
 
-    <!-- Info upah -->
-    <div class="info-upah petik" id="infoUpah">
-        💰 Upah Petik: Rp 7.000 / kg
-    </div>
+    <div class="indicator" id="indicator">✅ Tersimpan</div>
 
-    <div class="status-bar" id="statusBar"></div>
+    <script>
+        // ================================================================
+        // 1.  KONFIGURASI SUPABASE
+        // ================================================================
+        const SUPABASE_URL = 'https://hqbsgzzuytxqqdnwwfrc.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnNnenp1eXR4cXFkbnd3ZnJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwMDYzNzcsImV4cCI6MjA5ODU4MjM3N30.iyCNEEoC4LRLe6dunw2akYPRNHHjCQliPtrzYuyLxuA';
 
-    <label for="namaPekerja">👤 Nama Pekerja</label>
-    <input type="text" id="namaPekerja" placeholder="Misal: Pak Rahmat" autocomplete="off" inputmode="text">
-
-    <label for="berat">⚖️ Berat (kg)</label>
-    <input type="number" id="berat" placeholder="Contoh: 11.5" step="any" autocomplete="off" inputmode="decimal">
-
-    <div class="btn-group">
-        <button class="btn-tambah-save" id="btnTambahSave" onclick="tambahDanSave()">➕ Tambah + Save</button>
-        <button class="btn-hapus" onclick="hapusSemua()">🗑 Hapus</button>
-    </div>
-
-    <!-- ===== TABEL ===== -->
-    <div class="table-wrap">
-        <table>
-            <thead>
-                <tr>
-                    <th style="text-align:left;padding-left:16px;">👤 Nama</th>
-                    <th>⚖️ Berat (kg)</th>
-                    <th>💰 Upah (Rp)</th>
-                    <th style="font-size:10px;text-transform:none;">📋 Tipe</th>
-                </tr>
-            </thead>
-            <tbody id="tabelBody">
-                <tr><td colspan="4" class="kosong">Belum ada data</td></tr>
-            </tbody>
-            <tfoot id="tabelFooter"></tfoot>
-        </table>
-    </div>
-
-    <div class="btn-group">
-        <button class="btn-download" onclick="downloadTXT()">⬇ Download .txt</button>
-    </div>
-
-    <div class="info-bar">
-        <span>💾 <span id="jumlahData">0</span> data tersimpan</span>
-        <span class="badge" id="totalItem">0 item</span>
-    </div>
-</div>
-
-<div class="indicator" id="indicator">✅ Tersimpan</div>
-
-<script>
-    // ==================== STATE ====================
-    let currentTab = 'petik'; // 'petik' atau 'kepik'
-    let data = [];
-
-    // Harga per kg
-    const HARGA = {
-        petik: 7000,
-        kepik: 1500
-    };
-
-    // ==================== ANTI REFRESH ====================
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F5' || ((e.ctrlKey || e.metaKey) && e.key === 'r')) {
-            e.preventDefault();
-            showIndicator('⚠️ Refresh dinonaktifkan!', 'warning');
-            return false;
-        }
-    });
-
-    let startY = 0;
-    let isScrolling = false;
-    document.addEventListener('touchstart', function(e) {
-        startY = e.touches[0].pageY;
-        isScrolling = false;
-    }, { passive: true });
-
-    document.addEventListener('touchmove', function(e) {
-        const deltaY = e.touches[0].pageY - startY;
-        if (deltaY > 40 && window.scrollY <= 0 && !isScrolling) {
-            e.preventDefault();
-            showIndicator('⚠️ Swipe refresh dinonaktifkan!', 'warning');
-            isScrolling = true;
-            setTimeout(() => {
-                hideIndicator();
-            }, 1500);
-            return false;
-        }
-    }, { passive: false });
-
-    window.addEventListener('beforeunload', function(e) {
-        if (data.length > 0) {
-            e.preventDefault();
-            e.returnValue = 'Data belum di-download. Yakin keluar?';
-        }
-    });
-
-    // ==================== TAB ====================
-    function switchTab(tab) {
-        currentTab = tab;
-        const tabPetik = document.getElementById('tabPetik');
-        const tabKepik = document.getElementById('tabKepik');
-        const info = document.getElementById('infoUpah');
-
-        if (tab === 'petik') {
-            tabPetik.className = 'tab-btn active-petik';
-            tabKepik.className = 'tab-btn';
-            info.className = 'info-upah petik';
-            info.textContent = '💰 Upah Petik: Rp 7.000 / kg';
-        } else {
-            tabPetik.className = 'tab-btn';
-            tabKepik.className = 'tab-btn active-kepik';
-            info.className = 'info-upah kepik';
-            info.textContent = '💰 Upah Kepik: Rp 1.500 / kg';
-        }
-
-        // Fokus ke input nama
-        document.getElementById('namaPekerja').focus();
-        showIndicatorTemp(`📋 Tab: ${tab.toUpperCase()}`, 'success', 1000);
-    }
-
-    // ==================== INDICATOR ====================
-    let indicatorTimeout = null;
-
-    function showIndicator(msg, type = '') {
-        const el = document.getElementById('indicator');
-        el.textContent = msg;
-        el.className = 'indicator';
-        if (type) el.classList.add(type);
-        el.classList.add('show');
-        if (indicatorTimeout) clearTimeout(indicatorTimeout);
-    }
-
-    function hideIndicator() {
-        const el = document.getElementById('indicator');
-        el.classList.remove('show');
-        if (indicatorTimeout) clearTimeout(indicatorTimeout);
-    }
-
-    function showIndicatorTemp(msg, type = '', duration = 2000) {
-        showIndicator(msg, type);
-        if (indicatorTimeout) clearTimeout(indicatorTimeout);
-        indicatorTimeout = setTimeout(() => {
-            hideIndicator();
-        }, duration);
-    }
-
-    // ==================== DATA ====================
-    function loadData() {
+        let supabase = null;
+        let supabaseReady = false;
         try {
-            const saved = localStorage.getItem('upahCengkeh');
-            if (saved) {
-                data = JSON.parse(saved);
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            supabaseReady = true;
+            console.log('✅ Supabase client initialized');
+        } catch (_) {
+            console.warn('⚠️ Supabase init gagal, pakai localStorage saja');
+            supabaseReady = false;
+        }
+
+        // ================================================================
+        // 2.  STATE
+        // ================================================================
+        let currentTab = 'petik';
+        let data = [];
+        let useSupabase = supabaseReady;
+
+        const HARGA = {
+            petik: 7000,
+            kepik: 1500
+        };
+
+        // ================================================================
+        // 3.  FUNGSI UTAMA
+        // ================================================================
+
+        // --- LOAD DATA ---
+        async function loadData() {
+            console.log('🔄 Memuat data...');
+            if (useSupabase) {
+                try {
+                    const { data: rows, error } = await supabase
+                        .from('upah_cengkeh')
+                        .select('*')
+                        .order('created_at', { ascending: true });
+
+                    if (error) throw error;
+
+                    if (rows && rows.length > 0) {
+                        data = rows;
+                        renderTabel();
+                        updateInfoBar();
+                        showIndicatorTemp(`✅ ${data.length} data dari Supabase`, 'success', 1500);
+                        console.log('✅ Data dari Supabase:', data.length);
+                        return;
+                    } else {
+                        data = [];
+                        renderTabel();
+                        updateInfoBar();
+                        showIndicatorTemp('📭 Tabel kosong, silakan tambah data', 'warning', 1500);
+                        return;
+                    }
+                } catch (err) {
+                    console.warn('⚠️ Supabase gagal, pakai localStorage:', err.message);
+                    useSupabase = false;
+                    showStatusBar('⚠️ Koneksi Supabase gagal, pakai data lokal', 'warning');
+                }
+            }
+
+            // FALLBACK localStorage
+            try {
+                const saved = localStorage.getItem('upahCengkeh');
+                if (saved) {
+                    data = JSON.parse(saved);
+                    renderTabel();
+                    updateInfoBar();
+                    showIndicatorTemp(`✅ ${data.length} data dari localStorage`, 'success', 1500);
+                } else {
+                    data = [];
+                    renderTabel();
+                    updateInfoBar();
+                }
+            } catch (_) {
+                data = [];
                 renderTabel();
-                showIndicatorTemp(`✅ ${data.length} data dimuat`, 'success', 1200);
+                updateInfoBar();
+                showStatusBar('❌ Gagal memuat data lokal', 'error');
             }
-        } catch(e) { data = []; }
-    }
-
-    function saveData() {
-        localStorage.setItem('upahCengkeh', JSON.stringify(data));
-        document.getElementById('jumlahData').textContent = data.length;
-        document.getElementById('totalItem').textContent = data.length + ' item';
-    }
-
-    function showStatusBar(msg, type = '') {
-        const bar = document.getElementById('statusBar');
-        bar.textContent = msg;
-        bar.className = 'status-bar show';
-        if (type) bar.classList.add(type);
-        if (indicatorTimeout) clearTimeout(indicatorTimeout);
-        indicatorTimeout = setTimeout(() => {
-            bar.classList.remove('show');
-        }, 3000);
-    }
-
-    // ==================== TAMBAH + SAVE ====================
-    function tambahDanSave() {
-        const nama = document.getElementById('namaPekerja').value.trim();
-        const berat = parseFloat(document.getElementById('berat').value);
-
-        if (!nama) { 
-            showStatusBar('⚠️ Isi nama pekerja!', 'warning');
-            return; 
-        }
-        if (isNaN(berat) || berat <= 0) { 
-            showStatusBar('⚠️ Isi berat yang valid!', 'warning');
-            return; 
         }
 
-        const btn = document.getElementById('btnTambahSave');
-        btn.classList.add('loading');
-        btn.textContent = '⏳ ...';
+        // --- TAMBAH DATA ---
+        async function tambahDanSave() {
+            const nama = document.getElementById('namaPekerja').value.trim();
+            const berat = parseFloat(document.getElementById('berat').value);
 
-        const harga = HARGA[currentTab];
-        const upah = berat * harga;
-        const tipe = currentTab === 'petik' ? 'Petik' : 'Kepik';
+            if (!nama) {
+                showStatusBar('⚠️ Isi nama pekerja!', 'warning');
+                return;
+            }
+            if (isNaN(berat) || berat <= 0) {
+                showStatusBar('⚠️ Isi berat yang valid!', 'warning');
+                return;
+            }
 
-        data.push({ nama, berat, upah, tipe, harga });
+            const btn = document.getElementById('btnTambahSave');
+            btn.classList.add('loading');
+            btn.textContent = '⏳ ...';
 
-        document.getElementById('namaPekerja').value = '';
-        document.getElementById('berat').value = '';
-        
-        renderTabel();
-        saveData();
-        
-        setTimeout(() => {
-            btn.classList.remove('loading');
-            btn.textContent = '➕ Tambah + Save';
-            showIndicatorTemp(`✅ ${nama} (${tipe}) tersimpan`, 'success', 1200);
-        }, 300);
+            const harga = HARGA[currentTab];
+            const upah = berat * harga;
+            const tipe = currentTab === 'petik' ? 'Petik' : 'Kepik';
+            const newItem = { nama, berat, upah, tipe, harga };
 
-        document.getElementById('namaPekerja').focus();
-    }
-
-    // ==================== RENDER TABEL ====================
-    function renderTabel() {
-        const tbody = document.getElementById('tabelBody');
-        const tfoot = document.getElementById('tabelFooter');
-        let totalUpah = 0;
-        let totalBerat = 0;
-
-        if (data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="kosong">Belum ada data</td></tr>';
-            tfoot.innerHTML = '';
-            return;
+            try {
+                if (useSupabase) {
+                    const { error } = await supabase
+                        .from('upah_cengkeh')
+                        .insert([newItem]);
+                    if (error) throw error;
+                    await loadData();
+                    showIndicatorTemp(`✅ ${nama} (${tipe}) tersimpan di cloud`, 'success', 1500);
+                } else {
+                    data.push(newItem);
+                    localStorage.setItem('upahCengkeh', JSON.stringify(data));
+                    renderTabel();
+                    updateInfoBar();
+                    showIndicatorTemp(`✅ ${nama} (${tipe}) tersimpan di lokal`, 'success', 1500);
+                }
+            } catch (err) {
+                console.error('❌ Simpan error:', err);
+                showStatusBar('❌ Gagal menyimpan! ' + err.message, 'error');
+            } finally {
+                btn.classList.remove('loading');
+                btn.textContent = '➕ Tambah + Save';
+                document.getElementById('namaPekerja').value = '';
+                document.getElementById('berat').value = '';
+                document.getElementById('namaPekerja').focus();
+            }
         }
 
-        let html = '';
-        data.forEach((item, index) => {
-            totalUpah += item.upah;
-            totalBerat += item.berat;
-            const tipeLabel = item.tipe === 'Petik' ? '🌱' : '🐛';
-            html += `
-                <tr>
-                    <td style="text-align:left;padding-left:16px;">${index + 1}. ${item.nama}</td>
-                    <td>${item.berat.toFixed(2)}</td>
-                    <td>Rp ${item.upah.toLocaleString('id-ID')}</td>
-                    <td style="font-size:11px;font-weight:600;color:${item.tipe === 'Petik' ? '#2d5a27' : '#1b6b8a'};">${tipeLabel} ${item.tipe}</td>
-                </tr>
-            `;
-        });
-        tbody.innerHTML = html;
+        // --- HAPUS SEMUA ---
+        async function hapusSemua() {
+            if (data.length === 0) return;
+            if (!confirm('⚠️ Yakin hapus SEMUA data?')) return;
 
-        // FOOTER TOTAL
-        const totalPetik = data.filter(d => d.tipe === 'Petik').reduce((sum, d) => sum + d.berat, 0);
-        const totalKepik = data.filter(d => d.tipe === 'Kepik').reduce((sum, d) => sum + d.berat, 0);
-        const totalUpahPetik = data.filter(d => d.tipe === 'Petik').reduce((sum, d) => sum + d.upah, 0);
-        const totalUpahKepik = data.filter(d => d.tipe === 'Kepik').reduce((sum, d) => sum + d.upah, 0);
-
-        tfoot.innerHTML = `
-            <tr class="total-row">
-                <td style="text-align:right;padding-right:16px;font-weight:700;">TOTAL</td>
-                <td style="font-weight:800;">${totalBerat.toFixed(2)} kg</td>
-                <td style="font-weight:800;">Rp ${totalUpah.toLocaleString('id-ID')}</td>
-                <td style="font-size:10px;font-weight:600;">
-                    🌱 ${totalPetik.toFixed(2)} kg | 🐛 ${totalKepik.toFixed(2)} kg
-                </td>
-            </tr>
-            <tr class="total-row" style="border-top:none;">
-                <td colspan="2" style="text-align:right;padding-right:16px;font-weight:700;border-top:none;font-size:12px;">
-                    Detail
-                </td>
-                <td style="border-top:none;font-size:12px;font-weight:600;">
-                    Petik: Rp ${totalUpahPetik.toLocaleString('id-ID')}
-                </td>
-                <td style="border-top:none;font-size:12px;font-weight:600;">
-                    Kepik: Rp ${totalUpahKepik.toLocaleString('id-ID')}
-                </td>
-            </tr>
-        `;
-
-        document.getElementById('totalItem').textContent = data.length + ' item';
-    }
-
-    // ==================== DOWNLOAD ====================
-    function downloadTXT() {
-        if (data.length === 0) { 
-            showStatusBar('⚠️ Belum ada data untuk di-download!', 'warning');
-            return; 
+            try {
+                if (useSupabase) {
+                    const { error } = await supabase
+                        .from('upah_cengkeh')
+                        .delete()
+                        .neq('id', '');
+                    if (error) throw error;
+                    await loadData();
+                } else {
+                    data = [];
+                    localStorage.setItem('upahCengkeh', JSON.stringify(data));
+                    renderTabel();
+                    updateInfoBar();
+                }
+                showIndicatorTemp('🗑 Semua data dihapus', 'warning', 1500);
+            } catch (err) {
+                console.error('❌ Hapus error:', err);
+                showStatusBar('❌ Gagal menghapus data!', 'error');
+            }
         }
 
-        let txt = '===== UPAH PETIK & KEPIK CENGKEH =====\n\n';
-        let grandTotalUpah = 0;
-        let grandTotalBerat = 0;
-        let totalPetik = 0;
-        let totalKepik = 0;
-        let totalUpahPetik = 0;
-        let totalUpahKepik = 0;
+        // --- RENDER TABEL ---
+        function renderTabel() {
+            const tbody = document.getElementById('tabelBody');
+            const tfoot = document.getElementById('tabelFooter');
 
-        txt += '📋 DATA PER PEKERJA:\n\n';
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="kosong">Belum ada data</td></tr>';
+                tfoot.innerHTML = '';
+                return;
+            }
 
-        data.forEach((item, i) => {
-            const hargaLabel = item.tipe === 'Petik' ? 'Rp 7.000' : 'Rp 1.500';
-            txt += `${i+1}. ${item.nama} (${item.tipe}) : ${item.berat.toFixed(2)} kg × ${hargaLabel} = Rp ${item.upah.toLocaleString('id-ID')}\n`;
-            grandTotalUpah += item.upah;
-            grandTotalBerat += item.berat;
-            if (item.tipe === 'Petik') {
-                totalPetik += item.berat;
-                totalUpahPetik += item.upah;
+            let totalUpah = 0,
+                totalBerat = 0;
+            let html = '';
+            data.forEach((item, index) => {
+                totalUpah += item.upah;
+                totalBerat += item.berat;
+                const tipeLabel = item.tipe === 'Petik' ? '🌱' : '🐛';
+                const warnaTipe = item.tipe === 'Petik' ? '#2d5a27' : '#1b6b8a';
+                html += `
+                        <tr>
+                            <td style="text-align:left;padding-left:16px;">${index + 1}. ${item.nama}</td>
+                            <td>${item.berat.toFixed(2)}</td>
+                            <td>Rp ${item.upah.toLocaleString('id-ID')}</td>
+                            <td style="font-size:11px;font-weight:600;color:${warnaTipe};">${tipeLabel} ${item.tipe}</td>
+                        </tr>
+                    `;
+            });
+            tbody.innerHTML = html;
+
+            const petikData = data.filter(d => d.tipe === 'Petik');
+            const kepikData = data.filter(d => d.tipe === 'Kepik');
+            const totalPetik = petikData.reduce((s, d) => s + d.berat, 0);
+            const totalKepik = kepikData.reduce((s, d) => s + d.berat, 0);
+            const totalUpahPetik = petikData.reduce((s, d) => s + d.upah, 0);
+            const totalUpahKepik = kepikData.reduce((s, d) => s + d.upah, 0);
+
+            tfoot.innerHTML = `
+                    <tr class="total-row">
+                        <td style="text-align:right;padding-right:16px;font-weight:700;">TOTAL</td>
+                        <td style="font-weight:800;">${totalBerat.toFixed(2)} kg</td>
+                        <td style="font-weight:800;">Rp ${totalUpah.toLocaleString('id-ID')}</td>
+                        <td style="font-size:10px;font-weight:600;">
+                            🌱 ${totalPetik.toFixed(2)} kg | 🐛 ${totalKepik.toFixed(2)} kg
+                        </td>
+                    </tr>
+                    <tr class="total-row" style="border-top:none;">
+                        <td colspan="2" style="text-align:right;padding-right:16px;font-weight:700;border-top:none;font-size:12px;">
+                            Detail
+                        </td>
+                        <td style="border-top:none;font-size:12px;font-weight:600;">
+                            Petik: Rp ${totalUpahPetik.toLocaleString('id-ID')}
+                        </td>
+                        <td style="border-top:none;font-size:12px;font-weight:600;">
+                            Kepik: Rp ${totalUpahKepik.toLocaleString('id-ID')}
+                        </td>
+                    </tr>
+                `;
+        }
+
+        function updateInfoBar() {
+            document.getElementById('jumlahData').textContent = data.length;
+            document.getElementById('totalItem').textContent = data.length + ' item';
+        }
+
+        // ================================================================
+        // 4.  TAB (fungsi global agar bisa dipanggil dari inline)
+        // ================================================================
+        function switchTab(tab) {
+            console.log('🔄 switchTab dipanggil:', tab);
+            currentTab = tab;
+            const tabPetik = document.getElementById('tabPetik');
+            const tabKepik = document.getElementById('tabKepik');
+            const info = document.getElementById('infoUpah');
+
+            if (tab === 'petik') {
+                tabPetik.className = 'tab-btn active-petik';
+                tabKepik.className = 'tab-btn';
+                info.className = 'info-upah petik';
+                info.textContent = '💰 Upah Petik: Rp 7.000 / kg';
+                console.log('🌱 Tab: PETIK');
             } else {
-                totalKepik += item.berat;
-                totalUpahKepik += item.upah;
+                tabPetik.className = 'tab-btn';
+                tabKepik.className = 'tab-btn active-kepik';
+                info.className = 'info-upah kepik';
+                info.textContent = '💰 Upah Kepik: Rp 1.500 / kg';
+                console.log('🐛 Tab: KEPIK');
             }
+            document.getElementById('namaPekerja').focus();
+            showIndicatorTemp('📋 Tab: ' + tab.toUpperCase(), 'success', 1000);
+        }
+
+        // Ekspor ke global agar bisa dipanggil dari inline onclick (jika masih ada)
+        window.switchTab = switchTab;
+
+        // ================================================================
+        // 5.  DOWNLOAD
+        // ================================================================
+        function downloadTXT() {
+            if (data.length === 0) {
+                showStatusBar('⚠️ Belum ada data!', 'warning');
+                return;
+            }
+
+            let txt = '===== UPAH PETIK & KEPIK CENGKEH =====\n\n';
+            let grandTotalUpah = 0,
+                grandTotalBerat = 0;
+            let totalPetik = 0,
+                totalKepik = 0;
+            let totalUpahPetik = 0,
+                totalUpahKepik = 0;
+
+            txt += '📋 DATA PER PEKERJA:\n\n';
+            data.forEach((item, i) => {
+                const hargaLabel = item.tipe === 'Petik' ? 'Rp 7.000' : 'Rp 1.500';
+                txt +=
+                    `${i+1}. ${item.nama} (${item.tipe}) : ${item.berat.toFixed(2)} kg × ${hargaLabel} = Rp ${item.upah.toLocaleString('id-ID')}\n`;
+                grandTotalUpah += item.upah;
+                grandTotalBerat += item.berat;
+                if (item.tipe === 'Petik') {
+                    totalPetik += item.berat;
+                    totalUpahPetik += item.upah;
+                } else {
+                    totalKepik += item.berat;
+                    totalUpahKepik += item.upah;
+                }
+            });
+
+            txt += '\n----------------------------------------\n';
+            txt += `📊 REKAPITULASI:\n`;
+            txt += `   Total Berat : ${grandTotalBerat.toFixed(2)} kg\n`;
+            txt += `   Total Upah  : Rp ${grandTotalUpah.toLocaleString('id-ID')}\n`;
+            txt += `\n   🌱 Petik : ${totalPetik.toFixed(2)} kg  |  Rp ${totalUpahPetik.toLocaleString('id-ID')}\n`;
+            txt += `   🐛 Kepik : ${totalKepik.toFixed(2)} kg  |  Rp ${totalUpahKepik.toLocaleString('id-ID')}\n`;
+            txt += `========================================\n`;
+            txt += `📅 ${new Date().toLocaleString('id-ID')}`;
+
+            const blob = new Blob([txt], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.download = `upah_cengkeh_${new Date().toISOString().slice(0, 10)}.txt`;
+            a.href = URL.createObjectURL(blob);
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showIndicatorTemp('✅ TXT di-download!', 'success', 1500);
+        }
+
+        function downloadPNG() {
+            if (data.length === 0) {
+                showStatusBar('⚠️ Belum ada data!', 'warning');
+                return;
+            }
+            const tableWrap = document.querySelector('.table-wrap');
+            html2canvas(tableWrap, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                allowTaint: false,
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `upah_cengkeh_${new Date().toISOString().slice(0, 10)}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showIndicatorTemp('✅ PNG di-download!', 'success', 1500);
+            }).catch(err => {
+                console.error('PNG error:', err);
+                showStatusBar('⚠️ Gagal generate PNG!', 'error');
+            });
+        }
+
+        // ================================================================
+        // 6.  INDIKATOR & STATUS BAR
+        // ================================================================
+        let indicatorTimeout = null;
+
+        function showIndicator(msg, type) {
+            const el = document.getElementById('indicator');
+            el.textContent = msg;
+            el.className = 'indicator';
+            if (type) el.classList.add(type);
+            el.classList.add('show');
+            if (indicatorTimeout) clearTimeout(indicatorTimeout);
+        }
+
+        function hideIndicator() {
+            const el = document.getElementById('indicator');
+            el.classList.remove('show');
+            if (indicatorTimeout) clearTimeout(indicatorTimeout);
+        }
+
+        function showIndicatorTemp(msg, type, duration = 2000) {
+            showIndicator(msg, type);
+            if (indicatorTimeout) clearTimeout(indicatorTimeout);
+            indicatorTimeout = setTimeout(hideIndicator, duration);
+        }
+
+        function showStatusBar(msg, type) {
+            const bar = document.getElementById('statusBar');
+            bar.textContent = msg;
+            bar.className = 'status-bar show';
+            if (type) bar.classList.add(type);
+            if (indicatorTimeout) clearTimeout(indicatorTimeout);
+            indicatorTimeout = setTimeout(() => {
+                bar.classList.remove('show');
+            }, 4000);
+        }
+
+        // ================================================================
+        // 7.  EVENT LISTENER (Dipasang setelah DOM siap)
+        // ================================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DOM siap, pasang event listener...');
+
+            // Tab dengan event listener (bukan inline onclick)
+            document.getElementById('tabPetik').addEventListener('click', function() {
+                switchTab('petik');
+            });
+            document.getElementById('tabKepik').addEventListener('click', function() {
+                switchTab('kepik');
+            });
+
+            // Tombol
+            document.getElementById('btnTambahSave').addEventListener('click', tambahDanSave);
+            document.getElementById('btnHapus').addEventListener('click', hapusSemua);
+            document.getElementById('btnDownloadTxt').addEventListener('click', downloadTXT);
+            document.getElementById('btnDownloadPng').addEventListener('click', downloadPNG);
+
+            // Enter key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    const aktif = document.activeElement;
+                    if (aktif && (aktif.id === 'namaPekerja' || aktif.id === 'berat')) {
+                        e.preventDefault();
+                        tambahDanSave();
+                    }
+                }
+            });
+
+            // Load data
+            loadData();
+
+            console.log('✅ Aplikasi siap!');
+            console.log('📋 Harga:', HARGA);
+            console.log('📌 Tab awal:', currentTab);
+            console.log('🔌 Supabase status:', useSupabase ? 'ONLINE' : 'OFFLINE (fallback localStorage)');
         });
 
-        txt += '\n----------------------------------------\n';
-        txt += `📊 REKAPITULASI:\n`;
-        txt += `   Total Berat : ${grandTotalBerat.toFixed(2)} kg\n`;
-        txt += `   Total Upah  : Rp ${grandTotalUpah.toLocaleString('id-ID')}\n`;
-        txt += `\n   🌱 Petik : ${totalPetik.toFixed(2)} kg  |  Rp ${totalUpahPetik.toLocaleString('id-ID')}\n`;
-        txt += `   🐛 Kepik : ${totalKepik.toFixed(2)} kg  |  Rp ${totalUpahKepik.toLocaleString('id-ID')}\n`;
-        txt += `========================================\n`;
-        txt += `📅 ${new Date().toLocaleString('id-ID')}`;
-
-        const blob = new Blob([txt], { type: 'text/plain' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `upah_cengkeh_${new Date().toISOString().slice(0,10)}.txt`;
-        a.click();
-        URL.revokeObjectURL(a.href);
-
-        showIndicatorTemp('✅ File di-download!', 'success', 1500);
-    }
-
-    function hapusSemua() {
-        if (data.length === 0) return;
-        if (confirm('⚠️ Yakin hapus semua data?')) {
-            data = [];
-            renderTabel();
-            saveData();
-            showIndicatorTemp('🗑 Semua data dihapus', 'warning', 1500);
-        }
-    }
-
-    // Enter = tambah + save
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            const aktif = document.activeElement;
-            if (aktif && (aktif.id === 'namaPekerja' || aktif.id === 'berat')) {
-                e.preventDefault();
-                tambahDanSave();
-            }
-        }
-    });
-
-    // ==================== START ====================
-    loadData();
-</script>
+        // Ekspor fungsi ke global agar bisa dipanggil dari inline (jika diperlukan)
+        window.tambahDanSave = tambahDanSave;
+        window.hapusSemua = hapusSemua;
+        window.downloadTXT = downloadTXT;
+        window.downloadPNG = downloadPNG;
+        window.switchTab = switchTab;
+    </script>
 
 </body>
 </html>
