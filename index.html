@@ -6,68 +6,102 @@
   <meta name="theme-color" content="#2d5a27">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF8WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLjAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjQuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjQtMDYtMTBUMTI6MzQ6NTArMDc6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI0LTA2LTEwVDEyOjM1OjEwKzA3OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI0LTA2LTEwVDEyOjM1OjEwKzA3OjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOmEwZGIzMzI5LWU3YzItNDI1OS1hMzU3LTA5ZmJjMjYxN2I1MCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDphMGRiMzMyOS1lN2MyLTQyNTktYTM1Ny0wOWZiYzI2MTdiNTAiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphMGRiMzMyOS1lN2MyLTQyNTktYTM1Ny0wOWZiYzI2MTdiNTAiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmEwZGIzMzI5LWU3YzItNDI1OS1hMzU3LTA5ZmJjMjYxN2I1MCIgc3RFdnQ6d2hlbj0iMjAyNC0wNi0xMFQxMjozNDo1MCswNzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI0LjAgKE1hY2ludG9zaCkiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/0fAX+/+FSU0NpZ0ZBTUdBCv////9oACAAMBAA==">
-  <title>🌿 Upah Cengkeh</title>
+  <title>🌿 Upah Cengkeh 3D</title>
   <style>
-    /* ===== KODE CSS SAMA DENGAN YANG KAMU PUNYA ===== */
+    /* ===== RESET + PERSPEKTIF ===== */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f0ebe4;
+      background: #e8e0d8;
       display: flex;
       justify-content: center;
       padding: 20px 10px;
       min-height: 100vh;
+      min-height: 100dvh;
+      perspective: 1200px;
+      perspective-origin: 50% 50%;
+      overflow-x: hidden;
     }
+
+    /* ===== KONTAINER 3D ===== */
     .container {
-      max-width: 660px;
+      max-width: 680px;
       width: 100%;
-      background: white;
-      border-radius: 24px;
-      padding: 24px 20px 30px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 28px 24px 34px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.6) inset;
+      transform: rotateX(3deg) rotateY(1deg) translateZ(10px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
     }
+    .container:hover {
+      transform: rotateX(1.5deg) rotateY(0.5deg) translateZ(20px);
+    }
+
+    /* ===== HEADER ===== */
     h2 {
-      font-size: 28px;
+      font-size: 32px;
+      font-weight: 800;
       background: linear-gradient(135deg, #2d5a27, #4a8c3f);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(45,90,39,0.2);
+      transform: translateZ(15px);
+      letter-spacing: -0.5px;
     }
-    .subtitle { color: #666; margin-bottom: 16px; }
+    .subtitle {
+      color: #5a4e44;
+      font-weight: 500;
+      margin-bottom: 18px;
+      transform: translateZ(10px);
+      font-size: 15px;
+    }
+
+    /* ===== TAB 3D ===== */
     .tab-wrap {
       display: flex;
-      gap: 8px;
-      background: #f0ebe4;
-      border-radius: 50px;
-      padding: 4px;
-      margin-bottom: 16px;
+      gap: 10px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 60px;
+      padding: 5px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.3);
+      transform: translateZ(8px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
     }
     .tab-btn {
       flex:1;
-      padding: 12px;
+      padding: 14px 12px;
       border: none;
       border-radius: 50px;
       font-weight: 700;
       font-size: 16px;
       cursor: pointer;
       background: transparent;
-      color: #666;
-      transition: 0.3s;
+      color: #6b5e52;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      transform: translateZ(0);
     }
     .tab-btn.active-petik {
       background: linear-gradient(135deg, #2d5a27, #4a8c3f);
       color: #fff;
-      box-shadow: 0 4px 12px rgba(45,90,39,0.3);
+      box-shadow: 0 8px 24px rgba(45,90,39,0.35);
+      transform: translateZ(12px) scale(1.03);
     }
     .tab-btn.active-kepik {
       background: linear-gradient(135deg, #1b6b8a, #2a9bc8);
       color: #fff;
-      box-shadow: 0 4px 12px rgba(27,107,138,0.3);
+      box-shadow: 0 8px 24px rgba(27,107,138,0.35);
+      transform: translateZ(12px) scale(1.03);
     }
     .tab-btn .badge {
+      display: inline-block;
       background: rgba(255,255,255,0.2);
-      padding: 0 8px;
+      padding: 0 10px;
       border-radius: 50px;
       font-size: 11px;
       margin-left: 4px;
@@ -77,184 +111,242 @@
       background: rgba(255,255,255,0.25);
     }
 
+    /* ===== INFO UPAH ===== */
     .info-upah {
       text-align: center;
-      padding: 10px;
-      border-radius: 12px;
+      padding: 12px 16px;
+      border-radius: 20px;
       font-weight: 600;
-      margin-bottom: 16px;
-      background: #f8f5f0;
-      border-left: 5px solid #2d5a27;
+      margin-bottom: 18px;
+      background: rgba(248,245,240,0.7);
+      backdrop-filter: blur(4px);
+      border-left: 6px solid #2d5a27;
       transition: 0.3s;
+      transform: translateZ(6px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
     .info-upah.petik { color: #2d5a27; border-color: #2d5a27; }
     .info-upah.kepik { color: #1b6b8a; border-color: #1b6b8a; }
 
+    /* ===== INPUT KAPSUL GRADIEN (TEKS PUTIH) ===== */
     label {
       display: block;
       font-weight: 600;
-      margin: 12px 0 4px;
-      font-size: 14px;
-      color: #333;
+      margin: 14px 0 4px;
+      font-size: 15px;
+      color: #3d352e;
+      transform: translateZ(4px);
     }
     input {
       width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #ddd;
-      border-radius: 50px;
-      font-size: 16px;
+      padding: 16px 22px;
+      border: 2px solid transparent;
+      border-radius: 60px;
+      font-size: 17px;
       outline: none;
+      /* Background gradien gelap + teks putih */
+      background: linear-gradient(135deg, #1a3a17, #2d5a27);
+      background-clip: padding-box;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+      transition: all 0.3s;
+      transform: translateZ(4px);
+      /* Border gradien terang */
+      background-image: linear-gradient(135deg, #6ab04c, #4a8c3f), linear-gradient(135deg, #1a3a17, #2d5a27);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      -webkit-appearance: none;
     }
-    input:focus { border-color: #4a8c3f; box-shadow: 0 0 0 4px rgba(74,140,63,0.15); }
+    /* Placeholder putih dengan opacity */
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+    }
+    input:focus {
+      box-shadow: 0 8px 24px rgba(74,140,63,0.3), 0 0 0 4px rgba(74,140,63,0.2);
+      transform: translateZ(12px) scale(1.01);
+      background-image: linear-gradient(135deg, #6ab04c, #4a8c3f), linear-gradient(135deg, #1a3a17, #2d5a27);
+    }
 
+    /* ===== TOMBOL KAPSUL GRADIEN ===== */
     .btn-group {
       display: flex;
-      gap: 10px;
-      margin: 14px 0;
+      gap: 12px;
+      margin: 16px 0;
       flex-wrap: wrap;
     }
     button {
-      padding: 14px 20px;
+      padding: 16px 24px;
       border: none;
-      border-radius: 50px;
+      border-radius: 60px;
       font-weight: 700;
-      font-size: 16px;
-      color: white;
+      font-size: 17px;
+      color: #fff;
       cursor: pointer;
       flex:1;
-      min-width: 100px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: 0.3s;
+      min-width: 110px;
+      background: linear-gradient(135deg, #2d5a27, #4a8c3f);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      transform: translateZ(6px);
+      letter-spacing: 0.3px;
+      transform-style: preserve-3d;
     }
-    button:active { transform: scale(0.95); }
-    button:hover { transform: translateY(-2px); }
-    .btn-save { background: linear-gradient(135deg, #2d5a27, #4a8c3f); }
-    .btn-save:hover { box-shadow: 0 8px 20px rgba(45,90,39,0.3); }
+    button:active { transform: translateZ(0) scale(0.95); }
+    button:hover {
+      transform: translateZ(16px) translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(45,90,39,0.3);
+    }
     .btn-delete { background: linear-gradient(135deg, #8b1a1a, #c0392b); }
-    .btn-delete:hover { box-shadow: 0 8px 20px rgba(139,26,26,0.3); }
+    .btn-delete:hover { box-shadow: 0 12px 32px rgba(139,26,26,0.35); }
     .btn-download { background: linear-gradient(135deg, #1b6b8a, #2a9bc8); }
-    .btn-download:hover { box-shadow: 0 8px 20px rgba(27,107,138,0.3); }
+    .btn-download:hover { box-shadow: 0 12px 32px rgba(27,107,138,0.35); }
     .btn-png { background: linear-gradient(135deg, #e67e22, #f39c12); }
-    .btn-png:hover { box-shadow: 0 8px 20px rgba(230,126,34,0.3); }
+    .btn-png:hover { box-shadow: 0 12px 32px rgba(230,126,34,0.35); }
 
+    /* ===== TABEL 3D (TEKS HITAM) ===== */
     .table-wrap {
       overflow-x: auto;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      margin: 12px 0;
-      background: white;
+      border-radius: 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
+      margin: 14px 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+      transform: perspective(1200px) rotateX(2deg) rotateY(1deg) translateZ(10px);
+      transition: transform 0.3s;
+    }
+    .table-wrap:hover {
+      transform: perspective(1200px) rotateX(0.5deg) rotateY(0deg) translateZ(20px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 15px;
+      font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+      color: #1e1e1e; /* teks hitam */
     }
     th {
-      background: #f0f0f0;
-      padding: 10px;
-      text-align: center;
-      border-bottom: 2px solid #2d5a27;
+      background: linear-gradient(180deg, #f8f9fa, #e9ecef);
+      color: #1e3d1a;
+      padding: 14px 12px;
+      border-bottom: 3px solid #2d5a27;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    th:first-child { text-align: left; padding-left: 16px; }
+    th:first-child { text-align: left; padding-left: 20px; }
     td {
-      padding: 10px;
+      padding: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
       text-align: center;
-      border-bottom: 1px solid #eee;
     }
-    td:first-child { text-align: left; padding-left: 16px; font-weight: 500; }
+    td:first-child { text-align: left; padding-left: 20px; font-weight: 500; }
     .total-row td {
-      background: #e8f5e9;
+      background: linear-gradient(180deg, #e8f5e9, #c8e6c9);
       font-weight: 800;
-      font-size: 16px;
-      border-top: 2px solid #2d5a27;
+      font-size: 17px;
+      border-top: 3px solid #2d5a27;
     }
-    .total-row td:first-child { text-align: right; padding-right: 16px; }
+    .total-row td:first-child { text-align: right; padding-right: 20px; }
     .kosong {
       text-align: center;
       color: #999;
-      padding: 30px;
+      padding: 40px;
       font-style: italic;
     }
+
+    /* ===== INFO BAR ===== */
     .info-bar {
       display: flex;
       justify-content: space-between;
-      font-size: 13px;
-      color: #666;
-      margin-top: 10px;
+      font-size: 14px;
+      color: #5a4e44;
+      margin-top: 12px;
+      transform: translateZ(4px);
     }
     .badge-count {
-      background: #2d5a27;
-      color: white;
-      padding: 2px 14px;
-      border-radius: 50px;
-      font-size: 13px;
+      background: linear-gradient(135deg, #2d5a27, #4a8c3f);
+      color: #fff;
+      padding: 2px 16px;
+      border-radius: 60px;
+      font-size: 14px;
+      font-weight: 600;
     }
+
+    /* ===== INDICATOR 3D ===== */
     .indicator {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #2d5a27;
-      color: white;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 13px;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(135deg, #2d5a27, #4a8c3f);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 60px;
+      font-size: 14px;
       font-weight: 600;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
       opacity: 0;
-      transform: translateY(20px);
-      transition: 0.4s;
+      transform: translateY(30px) scale(0.9) rotateX(10deg);
+      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
       pointer-events: none;
       z-index: 999;
+      transform-style: preserve-3d;
     }
-    .indicator.show { opacity: 1; transform: translateY(0); }
-    .indicator.success { background: #28a745; }
-    .indicator.warning { background: #ff9800; }
-    .indicator.error { background: #dc3545; }
+    .indicator.show {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0);
+    }
+    .indicator.success { background: linear-gradient(135deg, #28a745, #34ce57); }
+    .indicator.warning { background: linear-gradient(135deg, #ff9800, #ffc107); }
+    .indicator.error { background: linear-gradient(135deg, #dc3545, #e74c6f); }
 
-    @media (max-width:500px) {
-      .container { padding: 16px 12px; }
-      button { font-size: 14px; padding: 12px 14px; min-width: 70px; }
-      th, td { padding: 6px 4px; font-size: 12px; }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 500px) {
+      .container { padding: 18px 14px 24px; transform: rotateX(1.5deg) rotateY(0.5deg); }
+      button { font-size: 15px; padding: 14px 16px; min-width: 80px; }
+      input { padding: 14px 16px; font-size: 15px; }
+      th, td { padding: 8px 6px; font-size: 13px; }
     }
-    @media (max-height:600px) and (orientation:landscape) {
-      .container { padding: 12px 10px; }
-      h2 { font-size: 20px; }
-      .tab-btn { padding: 6px 10px; font-size: 13px; }
-      input { padding: 8px 12px; font-size: 14px; }
-      button { padding: 8px 12px; font-size: 13px; min-width: 60px; }
-      th, td { padding: 4px 6px; font-size: 10px; }
+    @media (max-height: 600px) and (orientation: landscape) {
+      .container { padding: 12px 10px; transform: rotateX(1deg) rotateY(0deg); }
+      h2 { font-size: 22px; }
+      .tab-btn { padding: 8px 10px; font-size: 14px; }
+      input { padding: 10px 14px; font-size: 14px; }
+      button { padding: 10px 14px; font-size: 14px; min-width: 70px; }
+      th, td { padding: 4px 6px; font-size: 11px; }
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>🌿 Upah Cengkeh</h2>
+  <h2>🌿 Upah Cengkeh 3D</h2>
   <div class="subtitle">Petik: Rp 7.000/kg | Kepik: Rp 1.500/kg</div>
 
+  <!-- TAB -->
   <div class="tab-wrap">
-    <button class="tab-btn active-petik" id="tabPetik">
-      🌱 Petik <span class="badge">Rp 7.000</span>
-    </button>
-    <button class="tab-btn" id="tabKepik">
-      🐛 Kepik <span class="badge">Rp 1.500</span>
-    </button>
+    <button class="tab-btn active-petik" id="tabPetik">🌱 Petik <span class="badge">Rp 7.000</span></button>
+    <button class="tab-btn" id="tabKepik">🐛 Kepik <span class="badge">Rp 1.500</span></button>
   </div>
 
   <div class="info-upah petik" id="infoUpah">💰 Upah Petik: Rp 7.000 / kg</div>
 
+  <!-- INPUT DENGAN TEKS PUTIH -->
   <label for="nama">👤 Nama Pekerja</label>
-  <input type="text" id="nama" placeholder="Misal: Pak Rahmat">
+  <input type="text" id="nama" placeholder="Misal: Pak Rahmat" autocomplete="off">
 
   <label for="berat">⚖️ Berat (kg)</label>
-  <input type="number" id="berat" placeholder="Contoh: 11.5" step="any">
+  <input type="number" id="berat" placeholder="Contoh: 11.5" step="any" autocomplete="off">
 
   <div class="btn-group">
     <button class="btn-save" id="btnTambah">➕ Tambah + Save</button>
     <button class="btn-delete" id="btnHapus">🗑 Hapus Semua</button>
   </div>
 
-  <div class="table-wrap">
+  <!-- TABEL DENGAN TEKS HITAM -->
+  <div class="table-wrap" id="tableWrap">
     <table>
       <thead><tr><th>👤 Nama</th><th>⚖️ Berat</th><th>💰 Upah</th><th>📋 Tipe</th></tr></thead>
       <tbody id="tabelBody"><tr><td colspan="4" class="kosong">Belum ada data</td></tr></tbody>
@@ -275,13 +367,52 @@
 
 <div class="indicator" id="indicator">✅ Tersimpan</div>
 
+<!-- html2canvas opsional untuk PNG -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script>
-  // ===== STATE =====
+  // ================================================================
+  // 0. ANTI REFRESH (F5, Ctrl+R, swipe, beforeunload)
+  // ================================================================
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F5' || (e.ctrlKey && e.key === 'r') || (e.metaKey && e.key === 'r')) {
+      e.preventDefault();
+      showIndicator('⚠️ Refresh dinonaktifkan!', 'warning', 1500);
+      return false;
+    }
+  });
+
+  let startY = 0;
+  document.addEventListener('touchstart', function(e) {
+    startY = e.touches[0].pageY;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function(e) {
+    const deltaY = e.touches[0].pageY - startY;
+    if (deltaY > 50 && window.scrollY === 0) {
+      e.preventDefault();
+      showIndicator('⚠️ Swipe refresh dinonaktifkan!', 'warning', 1500);
+      return false;
+    }
+  }, { passive: false });
+
+  window.addEventListener('beforeunload', function(e) {
+    if (data && data.length > 0) {
+      e.preventDefault();
+      e.returnValue = 'Data belum di-download. Yakin keluar?';
+    }
+  });
+
+  // ================================================================
+  // 1. STATE
+  // ================================================================
   let currentTab = 'petik';
   let data = [];
   const HARGA = { petik: 7000, kepik: 1500 };
 
-  // ===== LOAD & SAVE =====
+  // ================================================================
+  // 2. LOAD & SAVE (localStorage)
+  // ================================================================
   function loadData() {
     try {
       const saved = localStorage.getItem('upahCengkeh');
@@ -296,7 +427,9 @@
     updateInfo();
   }
 
-  // ===== RENDER =====
+  // ================================================================
+  // 3. RENDER TABEL
+  // ================================================================
   function renderTabel() {
     const tbody = document.getElementById('tabelBody');
     const tfoot = document.getElementById('tabelFooter');
@@ -332,13 +465,13 @@
 
     tfoot.innerHTML = `
       <tr class="total-row">
-        <td style="text-align:right;padding-right:16px;">TOTAL</td>
+        <td style="text-align:right;padding-right:20px;">TOTAL</td>
         <td>${totalBerat.toFixed(2)} kg</td>
         <td>Rp ${totalUpah.toLocaleString('id-ID')}</td>
-        <td style="font-size:12px;">🌱 ${totalPetik.toFixed(2)} kg | 🐛 ${totalKepik.toFixed(2)} kg</td>
+        <td style="font-size:13px;">🌱 ${totalPetik.toFixed(2)} kg | 🐛 ${totalKepik.toFixed(2)} kg</td>
       </tr>
-      <tr style="background:#f5f5f5;font-weight:600;font-size:13px;">
-        <td colspan="2" style="text-align:right;padding-right:16px;">Detail</td>
+      <tr style="background:#f5f5f5;font-weight:600;font-size:14px;">
+        <td colspan="2" style="text-align:right;padding-right:20px;">Detail</td>
         <td>Petik: Rp ${totalUpahPetik.toLocaleString('id-ID')}</td>
         <td>Kepik: Rp ${totalUpahKepik.toLocaleString('id-ID')}</td>
       </tr>
@@ -350,7 +483,9 @@
     document.getElementById('totalItem').textContent = data.length + ' item';
   }
 
-  // ===== TAB =====
+  // ================================================================
+  // 4. TAB
+  // ================================================================
   function switchTab(tab) {
     currentTab = tab;
     const tabPetik = document.getElementById('tabPetik');
@@ -371,7 +506,9 @@
     showIndicator('📋 Tab: ' + tab.toUpperCase(), 'success', 1000);
   }
 
-  // ===== TAMBAH DATA =====
+  // ================================================================
+  // 5. TAMBAH DATA
+  // ================================================================
   function tambahData() {
     const nama = document.getElementById('nama').value.trim();
     const berat = parseFloat(document.getElementById('berat').value);
@@ -394,7 +531,9 @@
     showIndicator(`✅ ${nama} (${tipe}) tersimpan`, 'success', 1500);
   }
 
-  // ===== HAPUS =====
+  // ================================================================
+  // 6. HAPUS SEMUA
+  // ================================================================
   function hapusSemua() {
     if (data.length === 0) return;
     if (!confirm('Yakin hapus semua data?')) return;
@@ -404,7 +543,9 @@
     showIndicator('🗑 Semua dihapus', 'warning', 1500);
   }
 
-  // ===== DOWNLOAD TXT =====
+  // ================================================================
+  // 7. DOWNLOAD TXT
+  // ================================================================
   function downloadTXT() {
     if (data.length === 0) { showIndicator('⚠️ Tidak ada data', 'warning', 1500); return; }
     let txt = '===== UPAH CENGKEH =====\n\n';
@@ -436,7 +577,9 @@
     showIndicator('✅ TXT di-download!', 'success', 1500);
   }
 
-  // ===== DOWNLOAD PNG =====
+  // ================================================================
+  // 8. DOWNLOAD PNG (butuh html2canvas)
+  // ================================================================
   function downloadPNG() {
     if (data.length === 0) { showIndicator('⚠️ Tidak ada data', 'warning', 1500); return; }
     const el = document.querySelector('.table-wrap');
@@ -444,7 +587,7 @@
       showIndicator('⚠️ html2canvas belum dimuat', 'error', 2000);
       return;
     }
-    html2canvas(el, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+    html2canvas(el, { scale: 2, backgroundColor: '#ffffff', logging: false }).then(canvas => {
       const a = document.createElement('a');
       a.download = `upah_cengkeh_${new Date().toISOString().slice(0,10)}.png`;
       a.href = canvas.toDataURL('image/png');
@@ -455,7 +598,9 @@
     });
   }
 
-  // ===== INDIKATOR =====
+  // ================================================================
+  // 9. INDIKATOR
+  // ================================================================
   let indicatorTimeout;
   function showIndicator(msg, type, duration = 2000) {
     const el = document.getElementById('indicator');
@@ -467,19 +612,21 @@
     indicatorTimeout = setTimeout(() => el.classList.remove('show'), duration);
   }
 
-  // ===== EVENT LISTENER =====
+  // ================================================================
+  // 10. EVENT LISTENER
+  // ================================================================
   document.addEventListener('DOMContentLoaded', function() {
-    // Tab
+    // TAB
     document.getElementById('tabPetik').addEventListener('click', () => switchTab('petik'));
     document.getElementById('tabKepik').addEventListener('click', () => switchTab('kepik'));
 
-    // Tombol
+    // TOMBOL
     document.getElementById('btnTambah').addEventListener('click', tambahData);
     document.getElementById('btnHapus').addEventListener('click', hapusSemua);
     document.getElementById('btnDownloadTxt').addEventListener('click', downloadTXT);
     document.getElementById('btnDownloadPng').addEventListener('click', downloadPNG);
 
-    // Enter
+    // ENTER
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         const aktif = document.activeElement;
@@ -491,7 +638,7 @@
     });
 
     loadData();
-    console.log('✅ Aplikasi siap (localStorage)');
+    console.log('🚀 Aplikasi 3D + Anti Refresh siap!');
   });
 
   // Expose ke global
@@ -501,13 +648,33 @@
   window.downloadTXT = downloadTXT;
   window.downloadPNG = downloadPNG;
 
-  // ===== REGISTER SERVICE WORKER =====
+  // ================================================================
+  // 11. PWA - SERVICE WORKER (inline via Blob)
+  // ================================================================
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
+    const swCode = `
+      const CACHE = 'upah-cengkeh-v1';
+      self.addEventListener('install', e => {
+        e.waitUntil(
+          caches.open(CACHE).then(c => c.addAll(['/'])).then(() => self.skipWaiting())
+        );
+      });
+      self.addEventListener('activate', e => {
+        e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))));
+        self.clients.claim();
+      });
+      self.addEventListener('fetch', e => {
+        e.respondWith(
+          caches.match(e.request).then(r => r || fetch(e.request)).catch(() => caches.match('/'))
+        );
+      });
+    `;
+    const blob = new Blob([swCode], { type: 'application/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl)
       .then(() => console.log('✅ Service Worker terdaftar'))
       .catch(err => console.warn('⚠️ SW gagal:', err));
   }
 </script>
-
 </body>
 </html>
