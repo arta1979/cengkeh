@@ -8,10 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="launchericon-192x192.png">
-  <title>🌿 Upah Cengkeh</title>
-
+  <title>🌿 Upah Cengkeh 3D</title>
   <style>
-    /* ===== RESET + PERSPEKTIF ===== */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -25,8 +23,6 @@
       perspective-origin: 50% 50%;
       overflow-x: hidden;
     }
-
-    /* ===== KONTAINER 3D ===== */
     .container {
       max-width: 680px;
       width: 100%;
@@ -40,11 +36,7 @@
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform-style: preserve-3d;
     }
-    .container:hover {
-      transform: rotateX(1.5deg) rotateY(0.5deg) translateZ(20px);
-    }
-
-    /* ===== HEADER ===== */
+    .container:hover { transform: rotateX(1.5deg) rotateY(0.5deg) translateZ(20px); }
     h2 {
       font-size: 32px;
       font-weight: 800;
@@ -62,8 +54,6 @@
       transform: translateZ(10px);
       font-size: 15px;
     }
-
-    /* ===== TAB 3D ===== */
     .tab-wrap {
       display: flex;
       gap: 10px;
@@ -109,12 +99,7 @@
       font-size: 11px;
       margin-left: 4px;
     }
-    .tab-btn.active-petik .badge,
-    .tab-btn.active-kepik .badge {
-      background: rgba(255,255,255,0.25);
-    }
-
-    /* ===== INFO UPAH ===== */
+    .tab-btn.active-petik .badge, .tab-btn.active-kepik .badge { background: rgba(255,255,255,0.25); }
     .info-upah {
       text-align: center;
       padding: 12px 16px;
@@ -130,8 +115,6 @@
     }
     .info-upah.petik { color: #2d5a27; border-color: #2d5a27; }
     .info-upah.kepik { color: #1b6b8a; border-color: #1b6b8a; }
-
-    /* ===== INPUT KAPSUL GRADIEN (TEKS PUTIH) ===== */
     label {
       display: block;
       font-weight: 600;
@@ -147,31 +130,23 @@
       border-radius: 60px;
       font-size: 17px;
       outline: none;
-      /* Background gradien gelap + teks putih */
       background: linear-gradient(135deg, #1a3a17, #2d5a27);
       background-clip: padding-box;
       color: #ffffff;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
       transition: all 0.3s;
       transform: translateZ(4px);
-      /* Border gradien terang */
       background-image: linear-gradient(135deg, #6ab04c, #4a8c3f), linear-gradient(135deg, #1a3a17, #2d5a27);
       background-origin: border-box;
       background-clip: padding-box, border-box;
       -webkit-appearance: none;
     }
-    /* Placeholder putih dengan opacity */
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: 400;
-    }
+    input::placeholder { color: rgba(255,255,255,0.6); font-weight: 400; }
     input:focus {
       box-shadow: 0 8px 24px rgba(74,140,63,0.3), 0 0 0 4px rgba(74,140,63,0.2);
       transform: translateZ(12px) scale(1.01);
       background-image: linear-gradient(135deg, #6ab04c, #4a8c3f), linear-gradient(135deg, #1a3a17, #2d5a27);
     }
-
-    /* ===== TOMBOL KAPSUL GRADIEN ===== */
     .btn-group {
       display: flex;
       gap: 12px;
@@ -206,8 +181,6 @@
     .btn-download:hover { box-shadow: 0 12px 32px rgba(27,107,138,0.35); }
     .btn-png { background: linear-gradient(135deg, #e67e22, #f39c12); }
     .btn-png:hover { box-shadow: 0 12px 32px rgba(230,126,34,0.35); }
-
-    /* ===== TABEL 3D (TEKS HITAM) ===== */
     .table-wrap {
       overflow-x: auto;
       border-radius: 20px;
@@ -228,7 +201,7 @@
       border-collapse: collapse;
       font-size: 15px;
       font-family: 'Segoe UI', Calibri, Arial, sans-serif;
-      color: #1e1e1e; /* teks hitam */
+      color: #1e1e1e;
     }
     th {
       background: linear-gradient(180deg, #f8f9fa, #e9ecef);
@@ -259,8 +232,6 @@
       padding: 40px;
       font-style: italic;
     }
-
-    /* ===== INFO BAR ===== */
     .info-bar {
       display: flex;
       justify-content: space-between;
@@ -277,8 +248,6 @@
       font-size: 14px;
       font-weight: 600;
     }
-
-    /* ===== INDICATOR 3D ===== */
     .indicator {
       position: fixed;
       bottom: 24px;
@@ -304,15 +273,13 @@
     .indicator.success { background: linear-gradient(135deg, #28a745, #34ce57); }
     .indicator.warning { background: linear-gradient(135deg, #ff9800, #ffc107); }
     .indicator.error { background: linear-gradient(135deg, #dc3545, #e74c6f); }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 500px) {
+    @media (max-width:500px) {
       .container { padding: 18px 14px 24px; transform: rotateX(1.5deg) rotateY(0.5deg); }
       button { font-size: 15px; padding: 14px 16px; min-width: 80px; }
       input { padding: 14px 16px; font-size: 15px; }
       th, td { padding: 8px 6px; font-size: 13px; }
     }
-    @media (max-height: 600px) and (orientation: landscape) {
+    @media (max-height:600px) and (orientation:landscape) {
       .container { padding: 12px 10px; transform: rotateX(1deg) rotateY(0deg); }
       h2 { font-size: 22px; }
       .tab-btn { padding: 8px 10px; font-size: 14px; }
@@ -328,7 +295,6 @@
   <h2>🌿 Upah Cengkeh 3D</h2>
   <div class="subtitle">Petik: Rp 7.000/kg | Kepik: Rp 1.500/kg</div>
 
-  <!-- TAB -->
   <div class="tab-wrap">
     <button class="tab-btn active-petik" id="tabPetik">🌱 Petik <span class="badge">Rp 7.000</span></button>
     <button class="tab-btn" id="tabKepik">🐛 Kepik <span class="badge">Rp 1.500</span></button>
@@ -336,23 +302,21 @@
 
   <div class="info-upah petik" id="infoUpah">💰 Upah Petik: Rp 7.000 / kg</div>
 
-  <!-- INPUT DENGAN TEKS PUTIH -->
   <label for="nama">👤 Nama Pekerja</label>
-  <input type="text" id="nama" placeholder="" autocomplete="off">
+  <input type="text" id="nama" placeholder="Misal: Pak Rahmat" autocomplete="off">
 
   <label for="berat">⚖️ Berat (kg)</label>
-  <input type="number" id="berat" placeholder="" step="any" autocomplete="off">
+  <input type="number" id="berat" placeholder="Contoh: 11.5" step="any" autocomplete="off">
 
   <div class="btn-group">
     <button class="btn-save" id="btnTambah">➕ Tambah + Save</button>
     <button class="btn-delete" id="btnHapus">🗑 Hapus Semua</button>
   </div>
 
-  <!-- TABEL DENGAN TEKS HITAM -->
   <div class="table-wrap" id="tableWrap">
     <table>
       <thead><tr><th>👤 Nama</th><th>⚖️ Berat</th><th>💰 Upah</th><th>📋 Tipe</th></tr></thead>
-      <tbody id="tabelBody"><tr><td colspan="4" class="kosong">Belum ada data</td></tr></tbody>
+      <tbody id="tabelBody"><tr><td colspan="4" class="kosong">Memuat data...</td></tr></tbody>
       <tfoot id="tabelFooter"></tfoot>
     </table>
   </div>
@@ -370,12 +334,32 @@
 
 <div class="indicator" id="indicator">✅ Tersimpan</div>
 
-<!-- html2canvas untuk PNG -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- Supabase JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+</script>
 
 <script>
   // ================================================================
-  // 0. ANTI REFRESH (F5, Ctrl+R, swipe, beforeunload)
+  // 0. SUPABASE CONFIG
+  // ================================================================
+  const SUPABASE_URL = 'https://hqbsgzzuytxqqdnwwfrc.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYnNnenp1eXR4cXFkbnd3ZnJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwMDYzNzcsImV4cCI6MjA5ODU4MjM3N30.iyCNEEoC4LRLe6dunw2akYPRNHHjCQliPtrzYuyLxuA';
+
+  let supabase = null;
+  let useSupabase = false;
+  try {
+    const { createClient } = window.supabase;
+    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    useSupabase = true;
+  } catch (_) {
+    useSupabase = false;
+  }
+
+  // ================================================================
+  // 1. ANTI REFRESH
   // ================================================================
   document.addEventListener('keydown', function(e) {
     if (e.key === 'F5' || (e.ctrlKey && e.key === 'r') || (e.metaKey && e.key === 'r')) {
@@ -407,31 +391,63 @@
   });
 
   // ================================================================
-  // 1. STATE
+  // 2. STATE
   // ================================================================
   let currentTab = 'petik';
   let data = [];
   const HARGA = { petik: 7000, kepik: 1500 };
 
   // ================================================================
-  // 2. LOAD & SAVE (localStorage)
+  // 3. FUNGSI LOAD & SAVE (Supabase + localStorage fallback)
   // ================================================================
-  function loadData() {
+  async function loadData() {
+    try {
+      if (useSupabase) {
+        const { data: rows, error } = await supabase
+          .from('upah_cengkeh')
+          .select('*')
+          .order('created_at', { ascending: true });
+        if (error) throw error;
+        if (rows && rows.length > 0) {
+          data = rows;
+          renderTabel();
+          updateInfo();
+          showIndicator(`✅ ${data.length} data dari Supabase`, 'success', 1500);
+          return;
+        } else {
+          data = [];
+          renderTabel();
+          updateInfo();
+          showIndicator('📭 Tabel kosong, silakan tambah data', 'warning', 1500);
+          return;
+        }
+      }
+    } catch (_) {
+      useSupabase = false;
+      showIndicator('⚠️ Supabase gagal, pakai localStorage', 'warning', 1500);
+    }
+
+    // FALLBACK localStorage
     try {
       const saved = localStorage.getItem('upahCengkeh');
       data = saved ? JSON.parse(saved) : [];
-    } catch (_) { data = []; }
+    } catch (_) {
+      data = [];
+    }
     renderTabel();
     updateInfo();
+    if (data.length > 0) showIndicator(`✅ ${data.length} data dari localStorage`, 'success', 1500);
+    else showIndicator('📭 Tidak ada data', 'warning', 1500);
   }
 
-  function saveData() {
+  async function saveData() {
+    // hanya untuk localStorage fallback
     localStorage.setItem('upahCengkeh', JSON.stringify(data));
     updateInfo();
   }
 
   // ================================================================
-  // 3. RENDER TABEL
+  // 4. RENDER TABEL
   // ================================================================
   function renderTabel() {
     const tbody = document.getElementById('tabelBody');
@@ -443,7 +459,8 @@
       return;
     }
 
-    let totalUpah = 0, totalBerat = 0;
+    let totalUpah = 0,
+      totalBerat = 0;
     let html = '';
     data.forEach((item, i) => {
       totalUpah += item.upah;
@@ -461,10 +478,10 @@
 
     const petik = data.filter(d => d.tipe === 'Petik');
     const kepik = data.filter(d => d.tipe === 'Kepik');
-    const totalPetik = petik.reduce((s,d) => s+d.berat, 0);
-    const totalKepik = kepik.reduce((s,d) => s+d.berat, 0);
-    const totalUpahPetik = petik.reduce((s,d) => s+d.upah, 0);
-    const totalUpahKepik = kepik.reduce((s,d) => s+d.upah, 0);
+    const totalPetik = petik.reduce((s, d) => s + d.berat, 0);
+    const totalKepik = kepik.reduce((s, d) => s + d.berat, 0);
+    const totalUpahPetik = petik.reduce((s, d) => s + d.upah, 0);
+    const totalUpahKepik = kepik.reduce((s, d) => s + d.upah, 0);
 
     tfoot.innerHTML = `
       <tr class="total-row">
@@ -487,7 +504,7 @@
   }
 
   // ================================================================
-  // 4. TAB
+  // 5. TAB
   // ================================================================
   function switchTab(tab) {
     currentTab = tab;
@@ -510,9 +527,9 @@
   }
 
   // ================================================================
-  // 5. TAMBAH DATA
+  // 6. TAMBAH DATA (insert ke Supabase)
   // ================================================================
-  function tambahData() {
+  async function tambahData() {
     const nama = document.getElementById('nama').value.trim();
     const berat = parseFloat(document.getElementById('berat').value);
 
@@ -522,45 +539,87 @@
     const harga = HARGA[currentTab];
     const upah = berat * harga;
     const tipe = currentTab === 'petik' ? 'Petik' : 'Kepik';
+    const newItem = { nama, berat, upah, tipe, harga };
 
-    data.push({ nama, berat, upah, tipe, harga });
-    saveData();
-    renderTabel();
+    const btn = document.getElementById('btnTambah');
+    btn.textContent = '⏳ ...';
 
-    document.getElementById('nama').value = '';
-    document.getElementById('berat').value = '';
-    document.getElementById('nama').focus();
-
-    showIndicator(`✅ ${nama} (${tipe}) tersimpan`, 'success', 1500);
+    try {
+      if (useSupabase) {
+        const { error } = await supabase
+          .from('upah_cengkeh')
+          .insert([newItem]);
+        if (error) throw error;
+        await loadData();
+        showIndicator(`✅ ${nama} (${tipe}) tersimpan di cloud`, 'success', 1500);
+      } else {
+        data.push(newItem);
+        localStorage.setItem('upahCengkeh', JSON.stringify(data));
+        renderTabel();
+        updateInfo();
+        showIndicator(`✅ ${nama} (${tipe}) tersimpan di lokal`, 'success', 1500);
+      }
+    } catch (err) {
+      console.error('❌ Simpan error:', err);
+      showIndicator('❌ Gagal menyimpan! ' + err.message, 'error', 3000);
+    } finally {
+      btn.textContent = '➕ Tambah + Save';
+      document.getElementById('nama').value = '';
+      document.getElementById('berat').value = '';
+      document.getElementById('nama').focus();
+    }
   }
 
   // ================================================================
-  // 6. HAPUS SEMUA
+  // 7. HAPUS SEMUA (delete dari Supabase)
   // ================================================================
-  function hapusSemua() {
+  async function hapusSemua() {
     if (data.length === 0) return;
-    if (!confirm('Yakin hapus semua data?')) return;
-    data = [];
-    saveData();
-    renderTabel();
-    showIndicator('🗑 Semua dihapus', 'warning', 1500);
+    if (!confirm('⚠️ Yakin hapus semua data?')) return;
+
+    try {
+      if (useSupabase) {
+        const { error } = await supabase
+          .from('upah_cengkeh')
+          .delete()
+          .neq('id', '');
+        if (error) throw error;
+        await loadData();
+        showIndicator('🗑 Semua data dihapus dari cloud', 'warning', 1500);
+      } else {
+        data = [];
+        localStorage.setItem('upahCengkeh', JSON.stringify(data));
+        renderTabel();
+        updateInfo();
+        showIndicator('🗑 Semua data dihapus', 'warning', 1500);
+      }
+    } catch (err) {
+      console.error('❌ Hapus error:', err);
+      showIndicator('❌ Gagal menghapus data!', 'error', 2000);
+    }
   }
 
   // ================================================================
-  // 7. DOWNLOAD TXT
+  // 8. DOWNLOAD TXT
   // ================================================================
   function downloadTXT() {
     if (data.length === 0) { showIndicator('⚠️ Tidak ada data', 'warning', 1500); return; }
     let txt = '===== UPAH CENGKEH =====\n\n';
-    let totalUpah = 0, totalBerat = 0;
-    let petikBerat=0, kepikBerat=0, petikUpah=0, kepikUpah=0;
+    let totalUpah = 0,
+      totalBerat = 0;
+    let petikBerat = 0,
+      kepikBerat = 0,
+      petikUpah = 0,
+      kepikUpah = 0;
 
     data.forEach((item, i) => {
       const label = item.tipe === 'Petik' ? 'Rp 7.000' : 'Rp 1.500';
       txt += `${i+1}. ${item.nama} (${item.tipe}) : ${item.berat.toFixed(2)} kg × ${label} = Rp ${item.upah.toLocaleString('id-ID')}\n`;
-      totalUpah += item.upah; totalBerat += item.berat;
-      if (item.tipe === 'Petik') { petikBerat += item.berat; petikUpah += item.upah; }
-      else { kepikBerat += item.berat; kepikUpah += item.upah; }
+      totalUpah += item.upah;
+      totalBerat += item.berat;
+      if (item.tipe === 'Petik') { petikBerat += item.berat;
+        petikUpah += item.upah; } else { kepikBerat += item.berat;
+        kepikUpah += item.upah; }
     });
 
     txt += `\n----------------------------------------\n`;
@@ -573,7 +632,7 @@
 
     const blob = new Blob([txt], { type: 'text/plain' });
     const a = document.createElement('a');
-    a.download = `upah_cengkeh_${new Date().toISOString().slice(0,10)}.txt`;
+    a.download = `upah_cengkeh_${new Date().toISOString().slice(0, 10)}.txt`;
     a.href = URL.createObjectURL(blob);
     a.click();
     URL.revokeObjectURL(a.href);
@@ -581,7 +640,7 @@
   }
 
   // ================================================================
-  // 8. DOWNLOAD PNG (butuh html2canvas)
+  // 9. DOWNLOAD PNG
   // ================================================================
   function downloadPNG() {
     if (data.length === 0) { showIndicator('⚠️ Tidak ada data', 'warning', 1500); return; }
@@ -592,7 +651,7 @@
     }
     html2canvas(el, { scale: 2, backgroundColor: '#ffffff', logging: false }).then(canvas => {
       const a = document.createElement('a');
-      a.download = `upah_cengkeh_${new Date().toISOString().slice(0,10)}.png`;
+      a.download = `upah_cengkeh_${new Date().toISOString().slice(0, 10)}.png`;
       a.href = canvas.toDataURL('image/png');
       a.click();
       showIndicator('✅ PNG di-download!', 'success', 1500);
@@ -602,9 +661,10 @@
   }
 
   // ================================================================
-  // 9. INDIKATOR
+  // 10. INDIKATOR
   // ================================================================
   let indicatorTimeout;
+
   function showIndicator(msg, type, duration = 2000) {
     const el = document.getElementById('indicator');
     el.textContent = msg;
@@ -616,7 +676,7 @@
   }
 
   // ================================================================
-  // 10. EVENT LISTENER
+  // 11. EVENT LISTENER
   // ================================================================
   document.addEventListener('DOMContentLoaded', function() {
     // TAB
@@ -640,8 +700,9 @@
       }
     });
 
+    // LOAD DATA
     loadData();
-    console.log('🚀 Aplikasi 3D + Anti Refresh siap!');
+    console.log('🚀 Aplikasi 3D + Supabase siap!');
   });
 
   // Expose ke global
@@ -652,7 +713,7 @@
   window.downloadPNG = downloadPNG;
 
   // ================================================================
-  // 11. SERVICE WORKER (pakai file sw.js yang sudah ada)
+  // 12. SERVICE WORKER (pakai file sw.js yang sudah ada)
   // ================================================================
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
@@ -660,5 +721,6 @@
       .catch(err => console.warn('⚠️ SW gagal:', err));
   }
 </script>
+
 </body>
 </html>
